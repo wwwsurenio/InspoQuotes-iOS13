@@ -10,7 +10,7 @@ import UIKit
 import StoreKit
 
 class QuoteTableViewController: UITableViewController, SKPaymentTransactionObserver {
-
+    
     let productID = "app.suren.InspoQuotes.PremiumQuotes"
     
     var quotesToShow = [
@@ -53,7 +53,7 @@ class QuoteTableViewController: UITableViewController, SKPaymentTransactionObser
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuoteCell", for: indexPath)
         
         if indexPath.row < quotesToShow.count{
@@ -108,9 +108,7 @@ class QuoteTableViewController: UITableViewController, SKPaymentTransactionObser
                 print("Transaction succesful!")
                 
                 showPremiumQuotes()
-                
-                UserDefaults.standard.setValue(true, forKey: productID)
-                
+            
                 SKPaymentQueue.default().finishTransaction(transaction)
                 
             }else if transaction.transactionState == .failed{
@@ -121,14 +119,23 @@ class QuoteTableViewController: UITableViewController, SKPaymentTransactionObser
                 }
                 
                 SKPaymentQueue.default().finishTransaction(transaction)
+                
+            }else if transaction.transactionState == .restored {
                 showPremiumQuotes()
+                
+                print("Transaction restored")
+                
+                //Removes the restore button once we are finished with restoring
+                navigationItem.setRightBarButton(nil, animated: true)
+                
+                SKPaymentQueue.default().finishTransaction(transaction)
             }
         }
         
     }
     
     func showPremiumQuotes(){
-        
+        UserDefaults.standard.setValue(true, forKey: productID)
         quotesToShow.append(contentsOf: premiumQuotes)
         tableView.reloadData()
     }
@@ -147,7 +154,7 @@ class QuoteTableViewController: UITableViewController, SKPaymentTransactionObser
     }
     
     @IBAction func restorePressed(_ sender: UIBarButtonItem) {
-        
+        SKPaymentQueue.default().restoreCompletedTransactions()
     }
     
     
