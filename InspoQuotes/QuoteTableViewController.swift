@@ -36,6 +36,10 @@ class QuoteTableViewController: UITableViewController, SKPaymentTransactionObser
         
         SKPaymentQueue.default().add(self)
         
+        if isPurchased(){
+            showPremiumQuotes()
+        }
+        
     }
     
     // MARK: - Table view data source
@@ -52,6 +56,8 @@ class QuoteTableViewController: UITableViewController, SKPaymentTransactionObser
         if indexPath.row < quotesToShow.count{
             cell.textLabel?.text = quotesToShow[indexPath.row]
             cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.accessoryType = .none
         }else{
             cell.textLabel?.text = "Get More Quotes"
             cell.textLabel?.textColor = #colorLiteral(red: 0.1568627451, green: 0.6274509804, blue: 0.7294117647, alpha: 1)
@@ -98,7 +104,12 @@ class QuoteTableViewController: UITableViewController, SKPaymentTransactionObser
                 //User paymen succesfull
                 print("Transaction succesful!")
                 
+                showPremiumQuotes()
+                
+                UserDefaults.standard.setValue(true, forKey: productID)
+                
                 SKPaymentQueue.default().finishTransaction(transaction)
+                
             }else if transaction.transactionState == .failed{
                 //Payment failed
                 if let error = transaction.error{
@@ -107,7 +118,27 @@ class QuoteTableViewController: UITableViewController, SKPaymentTransactionObser
                 }
                 
                 SKPaymentQueue.default().finishTransaction(transaction)
+                showPremiumQuotes()
             }
+        }
+        
+    }
+    
+    func showPremiumQuotes(){
+        
+        quotesToShow.append(contentsOf: premiumQuotes)
+        tableView.reloadData()
+    }
+    
+    func isPurchased() -> Bool {
+        let purchaseStatus = UserDefaults.standard.bool(forKey: productID)
+        
+        if purchaseStatus{
+            print("Previously purchased")
+            return true
+        }else{
+            print("Never purchased")
+            return false
         }
         
     }
