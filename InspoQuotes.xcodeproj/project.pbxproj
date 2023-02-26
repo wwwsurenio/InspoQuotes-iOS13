@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		598759E429AB79D30044E5ED /* app.suren.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 598759E329AB79D30044E5ED /* app.suren.storekit */; };
 		AD18A83E21285CAF00F6BF05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD18A83D21285CAF00F6BF05 /* AppDelegate.swift */; };
 		AD18A84321285CAF00F6BF05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD18A84121285CAF00F6BF05 /* Main.storyboard */; };
 		AD18A84521285CB000F6BF05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD18A84421285CB000F6BF05 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		598759E329AB79D30044E5ED /* app.suren.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = app.suren.storekit; sourceTree = "<group>"; };
 		AD18A83A21285CAF00F6BF05 /* InspoQuotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InspoQuotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD18A83D21285CAF00F6BF05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD18A84221285CAF00F6BF05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		AD18A8552128605C00F6BF05 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				598759E329AB79D30044E5ED /* app.suren.storekit */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 				AD18A84521285CB000F6BF05 /* Assets.xcassets in Resources */,
 				AD18A8532128604C00F6BF05 /* README.md in Resources */,
 				AD18A84321285CAF00F6BF05 /* Main.storyboard in Resources */,
+				598759E429AB79D30044E5ED /* app.suren.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
